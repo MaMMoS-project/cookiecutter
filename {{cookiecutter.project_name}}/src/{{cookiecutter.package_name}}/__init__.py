@@ -1,4 +1,4 @@
-"""Package documentation."""
+"""TODO Package documentation."""
 
 import importlib.metadata
 
