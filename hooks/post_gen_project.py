@@ -4,6 +4,7 @@ import subprocess as sp
 
 def init_git_repo():
     sp.check_call(["git", "init", "."])
+    sp.check_call(["git", "branch", "-m", "main"])
 
 
 def add_git_remote():
