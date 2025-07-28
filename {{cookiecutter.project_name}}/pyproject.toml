@@ -67,6 +67,7 @@ packaging = "<25"
 pre-commit = "*"
 pytest = "*"
 ruff = "*"
+towncrier = "*"
 
 #[tool.pixi.target.linux-64.dependencies]
 #esys-escript = ">=5.10,<6"  # TODO are platform-specific packages required?
@@ -81,3 +82,41 @@ test-docstrings = "pytest -v --doctest-modules src/{{cookiecutter.package_name}}
 test-notebooks = "pytest -v --nbval-lax examples"
 test-all = { depends-on = ["test-unittest", "test-docstrings", "test-notebooks"] }
 style = "pre-commit run --all-files"
+
+[tool.towncrier]
+directory = "changes"
+filename = "CHANGELOG.md"
+package = "{{cookiecutter.package_name}}"
+title_format = "## [{{cookiecutter.project_name}} {version}](https://github.com/MaMMoS-project/{{cookiecutter.project_name}}/tree/{version}) – {project_date}"
+# point to PRs instead of issues; CI ensures that the correct PR numbers exist
+issue_format = "[#{issue}](https://github.com/MaMMoS-project/{{cookiecutter.project_name}}/pull/{issue})"
+
+[[tool.towncrier.type]]
+directory = "added"
+name = "Added"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "changed"
+name = "Changed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "deprecated"
+name = "Deprecated"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removed"
+name = "Removed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "fixed"
+name = "Fixed"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "misc"
+name = "Misc"
+showcontent = true
