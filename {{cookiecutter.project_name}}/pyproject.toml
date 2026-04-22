@@ -46,8 +46,8 @@ select = [
   "SIM", # flake8-simplify
   "UP",  # pyupgrade
 ]
-isort.known-local-folder = [ "src/mammos_units" ]
-pydocstyle.convention = "pep257"
+isort.known-local-folder = [ "src/{{cookiecutter.package_name}}" ]
+pydocstyle.convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "*.ipynb" = ["B018"]  # "Found useless expression. Either assign it to a variable or remove it."; false positives when using implicit __repr__ in the notebook
@@ -77,9 +77,9 @@ towncrier = "*"
 
 [tool.pixi.tasks]
 examples = "jupyter-lab examples"
-test-unittest = "pytest -v tests"
-test-docstrings = "pytest -v --doctest-modules src/{{cookiecutter.package_name}}"
-test-notebooks = "pytest -v --nbval-lax examples"
+test-unittest = "pytest -vv tests"
+test-docstrings = "pytest -vv --doctest-modules src/{{cookiecutter.package_name}}"
+test-notebooks = "pytest -vv --nbval-lax examples"
 test-all = { depends-on = ["test-unittest", "test-docstrings", "test-notebooks"] }
 style = "pre-commit run --all-files"
 
